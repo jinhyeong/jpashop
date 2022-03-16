@@ -6,6 +6,7 @@
 - [라이브러리 살펴보기](#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0)
 - [View 환경 설정](#view-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95)
 - [H2 데이터베이스 설치](#h2-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%84%A4%EC%B9%98)
+- [JPA와 DB 설정, 동작확인](#jpa%EC%99%80-db-%EC%84%A4%EC%A0%95-%EB%8F%99%EC%9E%91%ED%99%95%EC%9D%B8)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -35,8 +36,8 @@ http://127.0.0.1:8080/hello
 # H2 데이터베이스 설치
 
 ```
-brew install h2
-`h2`
+$ brew install h2
+$ h2
 ```
 
 jdbc:h2:~/jpashop (최소 한번)
@@ -45,9 +46,9 @@ jdbc:h2:~/jpashop (최소 한번)
 
 # JPA와 DB 설정, 동작확인
 
-[GitHub - gavlyukovskiy/spring-boot-data-source-decorator: Spring Boot integration with p6spy, datasource-proxy, flexy-pool and spring-cloud-sleuth](https://github.com/gavlyukovskiy/spring-boot-data-source-decorator)  
+[GitHub - gavlyukovskiy/spring-boot-data-source-decorator: Spring Boot integration with p6spy, datasource-proxy, flexy-pool and spring-cloud-sleuth](https://github.com/gavlyukovskiy/spring-boot-data-source-decorator)
 
-`implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0'`  
+`implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0'`
 ```
 2022-03-17 01:54:17.306  INFO 75003 --- [           main] p6spy                                    : #1647449657306 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/jpashop
 select member0_.id as id1_0_0_, member0_.username as username2_0_0_ from member member0_ where member0_.id=?
