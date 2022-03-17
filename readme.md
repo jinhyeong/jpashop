@@ -22,9 +22,9 @@ Preferences | Build, Execution, Deployment | Compiler | Annotation Processors > 
 
 # View 환경 설정
 
-org.thymeleaf:thymeleaf:3.0.15.RELEASE
-장점: 네추럴 템플릿, 그냥 브라우저에서 열림.
-단점: 2버전 html 문법에 예민. 3버전에서 나아졌음.
+org.thymeleaf:thymeleaf:3.0.15.RELEASE  
+장점: 네추럴 템플릿, 그냥 브라우저에서 열림.  
+단점: 2버전 html 문법에 예민. 3버전에서 나아졌음.  
 
 [스프링 공식 튜토리얼](https://spring.io/guides/gs/serving-web-content/)
 
@@ -40,9 +40,9 @@ $ brew install h2
 $ h2
 ```
 
-jdbc:h2:~/jpashop (최소 한번)
-~/jpashop.mv.db 파일 생성 확인
-이후 부터는 jdbc:h2:tcp://localhost/~/jpashop 접속
+jdbc:h2:\~/jpashop (최소 한번)  
+\~/jpashop.mv.db 파일 생성 확인  
+이후 부터는 jdbc:h2:tcp://localhost/\~/jpashop 접속  
 
 # JPA와 DB 설정, 동작확인
 
