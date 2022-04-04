@@ -54,3 +54,43 @@ jdbc:h2:\~/jpashop (최소 한번)
 select member0_.id as id1_0_0_, member0_.username as username2_0_0_ from member member0_ where member0_.id=?
 select member0_.id as id1_0_0_, member0_.username as username2_0_0_ from member member0_ where member0_.id=1;
 ```
+
+# CSS
+https://getbootstrap.com/docs/4.6/getting-started/download/  
+
+
+# org.springframework.boot.autoconfigure.validation.ValidatorAdapter.create
+`OptionalValidatorFactoryBean` 요놈 때문에 `LocalValidatorFactoryBean` 이 생성이 안되는건가? 그래서 `@Valid` 가 안 먹나? 아닌데 `LocalValidatorFactoryBean` 상속 받고 있는디...
+
+`implementation 'org.hibernate.validator:hibernate-validator:6.2.3.Final'` 버전을 낯추니 되네.  
+
+```java
+private static Validator create(MessageSource messageSource) {
+    OptionalValidatorFactoryBean validator = new OptionalValidatorFactoryBean();
+    try {
+    MessageInterpolatorFactory factory = new MessageInterpolatorFactory(messageSource);
+    validator.setMessageInterpolator(factory.getObject());
+    }
+    catch (ValidationException ex) {
+    // Ignore
+    }
+    return wrap(validator, false);
+    }
+```
+
+7버전은 뭐가 안 맞는거 같다. `ResourceBundleMessageInterpolator` 클래스가 `MessageInterpolator` 상속을 안하는 듯?
+Required type:
+MessageInterpolator
+Provided:
+ResourceBundleMessageInterpolator
+```java
+	private static class HibernateValidatorDelegate {
+
+		public static MessageInterpolator buildMessageInterpolator(MessageSource messageSource) {
+			return new ResourceBundleMessageInterpolator(new MessageSourceResourceBundleLocator(messageSource));
+		}
+	}
+```
+**암튼 무조건 최신 버전으로 하면 안된다. 호환 버전을 체크하도록 하자!**
+`implementation 'org.hibernate.validator:hibernate-validator'` 설정하면 `org.hibernate.validator:hibernate-validator:6.2.2.Final (*)` 로 자동 설정된다.
+아... 그냥 `implementation 'org.springframework.boot:spring-boot-starter-validation'` 추가하면 되넹...
